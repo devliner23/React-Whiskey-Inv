@@ -5,9 +5,20 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import routes from "../config/routes";
+import Button from "./Button";
+import { useAuth0 } from "@auth0/auth0-react";
  
 export default function NavbarFunc() {
     const [isVisible, setIsVisible] = useState(false)
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
+    const signOutOnClick = () => {
+        logout();
+    };
+
+    const signInOnClick = () => {
+        loginWithRedirect();
+    };
 
     const dropDown = () => {
         setIsVisible(!isVisible)
@@ -50,7 +61,27 @@ export default function NavbarFunc() {
             </button>
         </div>
         { isVisible ? ( 
-        <div className="hidden lg:block">{navList}</div>
+            <div className="hidden lg:block">
+                {navList}
+                {
+                            !isAuthenticated ? 
+                            <Button className='flex items-center hover:text-blue-400 hover:border-blue-400'>
+                                <div>
+                                    <Link to="/" onClick={signInOnClick} className='flex place-items-center mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white'>
+                                        Login
+                                    </Link>
+                                </div>
+                            </Button>
+                            :
+                            <Button className='flex items-center hover:text-blue-400 hover:border-blue-400'>
+                                <div>
+                                    <Link to="/" onClick={signOutOnClick} className='flex place-items-center mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white'>
+                                        Sign Out
+                                    </Link>
+                                </div>
+                            </Button>
+                        }    
+            </div>
         ) : (
         <></>
         ) }

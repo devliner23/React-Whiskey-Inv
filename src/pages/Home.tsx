@@ -1,4 +1,5 @@
 import Background from '../assets/background.jpg'
+import { Link } from 'react-router-dom'
 
 function Home() {
   return (
@@ -12,16 +13,24 @@ function Home() {
                     Welcome to the Whiskey Inventory
                 </div>
                 <div className="flex justify-center">
-                    <div className="flex">
-                        <div className="m-2 bg-white">
-
-                            <a href="#">Path 1</a>
-                        </div>
-                        <div className="m-2 bg-white">
-                            <a href="#">Path 2</a>
-                        </div>
-                        <div className="m-2 bg-white">
-                            <a href="#">Path 3</a>
+                    <div className='flex'>
+                        <Link  to="/dashboard" className='m-2 pb-2 w-[350px] bg-black text-white flex flex-col justify-between items-center p-4'>
+                            <i className='fa-solid fa-gauge fa-3x'></i>
+                            <a href='/dashboard' className='text-center'>
+                            Explore the Dashboard, add a new car, update an old car, or delete one entirely.
+                            </a>
+                        </Link>
+                        <Link to="/profile" className='m-2 pb-2 bg-black text-white flex flex-col justify-between items-center p-4'>
+                            <i className="fa-solid fa-id-card fa-3x"></i>
+                            <a href='/profile' className='text-center'>
+                            Take a look at our profile page
+                            </a>
+                        </Link>
+                        <div className='m-2 pb-2 bg-black text-white flex flex-col justify-between items-center p-4'>
+                            <i className="fa-solid fa-right-to-bracket fa-3x"></i>
+                            <a href='#' className='text-center'>
+                            Log in using your Google or Github account.
+                            </a>
                         </div>
                     </div>
                 </div>
